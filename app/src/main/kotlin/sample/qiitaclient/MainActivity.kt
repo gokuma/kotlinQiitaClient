@@ -19,11 +19,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 import sample.qiitaclient.model.Article
 import sample.qiitaclient.model.User
 import sample.qiitaclient.qlient.ArticleClient
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
+    @Inject
+    lateinit var articleClient: ArticleClient
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (application as QiitaClientApp).component.inject(this)
         setContentView(R.layout.activity_main)
 
         val listAdapter = ArticleListAdapter(applicationContext)
